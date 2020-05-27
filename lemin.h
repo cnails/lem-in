@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 11:55:04 by cnails            #+#    #+#             */
-/*   Updated: 2020/05/25 18:09:45 by cnails           ###   ########.fr       */
+/*   Updated: 2020/05/27 23:14:27 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct	s_room
 typedef struct	s_link
 {
 	bool			is_used;
-	bool			is_ususefull;
+	bool			is_unusefull;
 	t_room			*prev_room;	
 	t_room			*next_room;	
 	struct s_link	*next;
@@ -69,7 +69,9 @@ void			parse_room(t_lemin *data, bool start, bool end);
 void			parse_ants(t_lemin *data);
 int				parse_links(t_lemin *data);
 void			bfs(t_lemin *data);
-
+void			delete_same_bfs(t_lemin *data);
+void			set_directions(t_lemin *data);
+void			count_inp_out(t_lemin *data);
 
 /*
 *	utils

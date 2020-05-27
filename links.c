@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/19 19:53:06 by cnails            #+#    #+#             */
-/*   Updated: 2020/05/25 12:18:59 by cnails           ###   ########.fr       */
+/*   Updated: 2020/05/27 23:14:27 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	links_connection(t_lemin *data, char **line)
 	link->prev_room = find_room(data, line[0]);
 	link->next_room = find_room(data, line[1]);
 	link->is_used = false;
-	link->is_ususefull = false;
+	link->is_unusefull = false;
 	data->qty_links++;
 	if (ft_strsim(link->prev_room->name, link->next_room->name))
 		ft_error("link error\n");
