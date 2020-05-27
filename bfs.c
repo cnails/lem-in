@@ -1,0 +1,78 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bfs.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/24 18:26:23 by cnails            #+#    #+#             */
+/*   Updated: 2020/05/25 18:23:00 by cnails           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "lemin.h"
+
+void	print_bfs(t_lemin *data)
+{
+	t_room *head;
+
+	head = data->head;
+	while (head)
+	{
+		printf("%s %d\n", head->name, head->bfs);
+		head = head->next;
+	}
+}
+
+int		validate_bfs(t_lemin *data)
+{
+	t_room *head;
+
+	head = data->head;
+	while (head)
+	{
+		if (!(head->bfs || head->is_start))
+			return (0);
+		head = head->next;
+	}
+	return (1);
+}
+
+void	condition_check(t_link *head)
+{
+	if (((head->prev_room->bfs && (!head->next_room->bfs\
+		|| head->prev_room->bfs < head->next_room->bfs)) ||\
+		head->prev_room->is_start) && !head->next_room->is_start &&\
+		!head->prev_room->is_end)
+			head->next_room->bfs = head->prev_room->bfs + 1;
+		if (((head->next_room->bfs && (!head->prev_room->bfs\
+		|| head->next_room->bfs < head->prev_room->bfs)) ||\
+		head->next_room->is_start) && !head->prev_room->is_start &&\
+		!head->next_room->is_end)
+			head->prev_room->bfs = head->next_room->bfs + 1;
+		if (head->next_room->is_end)
+			head->next_room->bfs = INT_MAX;
+		if (head->prev_room->is_end)
+			head->prev_room->bfs = INT_MAX;
+}
+
+void	bfs(t_lemin *data)
+{
+	t_link *head;
+
+	data->var.is_true = false;
+	data->var.x = 0;
+	while (data->var.x < (data->qty_links + 1))
+	{
+		data->var.x++;
+		head = data->head_link;
+		while (head)
+		{
+			condition_check(head);
+			head = head->next;	
+		}
+		if (validate_bfs(data))
+			break;
+	}
+	print_bfs(data);
+}
