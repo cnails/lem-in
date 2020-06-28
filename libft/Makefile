@@ -6,7 +6,7 @@
 #    By: cnails <cnails@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/04 15:40:03 by cnails            #+#    #+#              #
-#    Updated: 2019/11/28 17:54:10 by cnails           ###   ########.fr        #
+#    Updated: 2020/06/28 14:35:46 by cnails           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,14 +35,15 @@ FILES = ft_atoi.c ft_putchar.c ft_strlen.c \
 		ft_lstnew.c ft_lstadd.c ft_lstdel.c ft_lstdelone.c \
 		ft_lstiter.c ft_lstmap.c ft_filereader.c ft_isprime.c \
 		ft_lennwords.c ft_getnwords.c get_next_line.c \
-		ft_dtoa.c ft_strset.c ft_for.c ft_itoa_base.c
+		ft_dtoa.c ft_strset.c ft_for.c ft_itoa_base.c \
+		ft_isnbr.c
 
 OBJS = $(FILES:.c=.o)
 
 all: $(NAME)
 
 %.o: %.c $(INC)
-	@gcc -c  $< -I $(INC)
+	@gcc -c  $< -I.
 
 $(NAME): $(OBJS)
 	@ar rc $@ $^

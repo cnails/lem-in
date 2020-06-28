@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/25 14:01:29 by cnails            #+#    #+#             */
-/*   Updated: 2020/06/28 13:28:40 by cnails           ###   ########.fr       */
+/*   Updated: 2020/06/28 14:08:59 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,19 +52,29 @@ void	delete_same_bfs(t_lemin *data)
 			head->is_unusefull = true;
 		if (!head->prev_room->bfs && !head->prev_room->is_start)
 			head->is_unusefull = true;
+		if (head->is_unusefull)
+			printf("del link %s-%s\n", head->prev_room->name, head->next_room->name);
 		head = head->next;
 	}
 }
 
-void	delete_dead_links(t_lemin *data)
+int		delete_dead_links(t_lemin *data)
 {
-	t_link *head;
+	t_link	*head;
+	int		flag;
 
+	flag = 0;
 	head = data->head_link;
 	while (head)
 	{
-		if (!head->next_room->output && !head->next_room->is_end)
+		if (!head->next_room->output && !head->next_room->is_end && !head->is_unusefull)
+		{
+			printf("del link %s-%s\n", head->prev_room->name, head->next_room->name);
+			head->prev_room->output -= 1;
 			head->is_unusefull = true;
+			flag = 1;
+		}
 		head = head->next;
 	}
+	return (flag);
 }

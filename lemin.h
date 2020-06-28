@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 11:55:04 by cnails            #+#    #+#             */
-/*   Updated: 2020/06/28 13:31:21 by cnails           ###   ########.fr       */
+/*   Updated: 2020/06/28 13:56:26 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void			delete_same_bfs(t_lemin *data);
 void			set_directions(t_lemin *data);
 void			count_inp_out(t_lemin *data);
 void			inp_forks(t_lemin *data);
+int				delete_dead_links(t_lemin *data);
 
 /*
 **	utils

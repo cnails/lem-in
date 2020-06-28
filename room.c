@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/19 12:54:06 by cnails            #+#    #+#             */
-/*   Updated: 2020/06/28 13:37:37 by cnails           ###   ########.fr       */
+/*   Updated: 2020/06/28 14:36:29 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,11 @@ void	validate_room(t_lemin *data, t_room *room)
 void	parse_room_data(t_lemin *data, t_room *room, char **line)
 {
 	room->name = ft_strdup(line[0]);
-	data->var.i = 0;
-	while (line[1][data->var.i])
-	{
-		if (!ft_isdigit(line[1][data->var.i]))
-			ft_error("coord error\n");
-		data->var.i++;
-	}
+	if (!ft_isnbr(line[1]))
+		ft_error("coord error\n");
 	room->x = ft_atoi(line[1]);
-	data->var.i = 0;
-	while (line[2][data->var.i])
-	{
-		if (!ft_isdigit(line[2][data->var.i]))
-			ft_error("coord error\n");
-		data->var.i++;
-	}
+	if (!ft_isnbr(line[2]))
+		ft_error("coord error\n");
 	room->y = ft_atoi(line[2]);
 	validate_room(data, room);
 }

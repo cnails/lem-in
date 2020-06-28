@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/27 22:44:00 by cnails            #+#    #+#             */
-/*   Updated: 2020/06/28 13:36:07 by cnails           ###   ########.fr       */
+/*   Updated: 2020/06/28 14:07:27 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void		print_room(t_lemin *data)
 	head = data->head;
 	while (head)
 	{
-		printf("%s input = %d output = %d\n", head->name, head->input, head->output);
+		printf("%s input = %ld output = %ld\n", head->name, head->input, head->output);
 		head = head->next;
 	}
 }
@@ -73,5 +73,5 @@ void		count_inp_out(t_lemin *data)
 	}
 	if (!data->var.is_true)
 		ft_error("no way");
-	print_room(data);
+	// print_room(data);
 }

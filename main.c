@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 11:55:09 by cnails            #+#    #+#             */
-/*   Updated: 2020/06/28 13:34:59 by cnails           ###   ########.fr       */
+/*   Updated: 2020/06/28 14:08:04 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ int			main(int ac, char **av)
 	set_directions(data);
 	count_inp_out(data);
 	inp_forks(data);
+	while (delete_dead_links(data))
+		count_inp_out(data);
 	free_rooms(data);
 	printf("\n");
 	free_links(data);
