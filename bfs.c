@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 18:26:23 by cnails            #+#    #+#             */
-/*   Updated: 2020/05/27 22:40:54 by cnails           ###   ########.fr       */
+/*   Updated: 2020/06/28 13:33:37 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,24 @@ int		validate_bfs(t_lemin *data)
 	return (1);
 }
 
-void	condition_check(t_link *head)
+void	condition_check(t_lemin *data, t_link *head)
 {
 	if (((head->prev_room->bfs && (!head->next_room->bfs\
 		|| head->prev_room->bfs < head->next_room->bfs)) ||\
 		head->prev_room->is_start) && !head->next_room->is_start &&\
 		!head->prev_room->is_end)
-			head->next_room->bfs = head->prev_room->bfs + 1;
-		if (((head->next_room->bfs && (!head->prev_room->bfs\
-		|| head->next_room->bfs < head->prev_room->bfs)) ||\
-		head->next_room->is_start) && !head->prev_room->is_start &&\
-		!head->next_room->is_end)
-			head->prev_room->bfs = head->next_room->bfs + 1;
-		if (head->next_room->is_end)
-			head->next_room->bfs = INT_MAX;
-		if (head->prev_room->is_end)
-			head->prev_room->bfs = INT_MAX;
+		head->next_room->bfs = head->prev_room->bfs + 1;
+	if (((head->next_room->bfs && (!head->prev_room->bfs\
+	|| head->next_room->bfs < head->prev_room->bfs)) ||\
+	head->next_room->is_start) && !head->prev_room->is_start &&\
+	!head->next_room->is_end)
+		head->prev_room->bfs = head->next_room->bfs + 1;
+	if (head->prev_room->bfs && head->next_room->is_end)
+		data->var.is_true = true;
+	if (head->next_room->is_end)
+		head->next_room->bfs = INT_MAX;
+	if (head->prev_room->is_end)
+		head->prev_room->bfs = INT_MAX;
 }
 
 void	bfs(t_lemin *data)
@@ -68,11 +70,13 @@ void	bfs(t_lemin *data)
 		head = data->head_link;
 		while (head)
 		{
-			condition_check(head);
-			head = head->next;	
+			condition_check(data, head);
+			head = head->next;
 		}
 		if (validate_bfs(data))
-			break;
+			break ;
 	}
+	if (!data->var.is_true)
+		ft_error("no way");
 	print_bfs(data);
 }

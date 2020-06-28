@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 16:43:51 by cnails            #+#    #+#             */
-/*   Updated: 2020/05/23 15:54:00 by cnails           ###   ########.fr       */
+/*   Updated: 2020/06/28 13:34:04 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		ft_sstlen(char **line)
 int		ft_strsim(char *str1, char *str2)
 {
 	return (ft_strlen(str1) == ft_strlen(str2))\
-				&& !ft_strcmp(str1, str2);
+	&& !ft_strcmp(str1, str2);
 }
 
 void	free_split(char **split)

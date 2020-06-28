@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/19 12:54:06 by cnails            #+#    #+#             */
-/*   Updated: 2020/05/25 18:11:29 by cnails           ###   ########.fr       */
+/*   Updated: 2020/06/28 13:37:37 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	parse_room_data(t_lemin *data, t_room *room, char **line)
 {
 	room->name = ft_strdup(line[0]);
 	data->var.i = 0;
-	while(line[1][data->var.i])
+	while (line[1][data->var.i])
 	{
 		if (!ft_isdigit(line[1][data->var.i]))
 			ft_error("coord error\n");
@@ -56,7 +56,7 @@ void	parse_room_data(t_lemin *data, t_room *room, char **line)
 	}
 	room->x = ft_atoi(line[1]);
 	data->var.i = 0;
-	while(line[2][data->var.i])
+	while (line[2][data->var.i])
 	{
 		if (!ft_isdigit(line[2][data->var.i]))
 			ft_error("coord error\n");
@@ -105,7 +105,7 @@ void	append_room(t_lemin *data, t_room *room)
 void	parse_room(t_lemin *data, bool start, bool end)
 {
 	t_room *room;
-	
+
 	room = (t_room *)ft_memalloc(sizeof(t_room));
 	init_room(room);
 	if (start || end)

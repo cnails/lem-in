@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/16 12:42:43 by cnails            #+#    #+#             */
-/*   Updated: 2020/05/25 12:15:34 by cnails           ###   ########.fr       */
+/*   Updated: 2020/06/28 13:35:49 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	parse_ants(t_lemin *data)
 		{
 			data->qty_ants = ft_atoi(data->var.line);
 			free(data->var.line);
-			break;
+			break ;
 		}
 		else if (data->var.line[0] == '#')
 		{

@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 11:55:09 by cnails            #+#    #+#             */
-/*   Updated: 2020/05/27 23:00:13 by cnails           ###   ########.fr       */
+/*   Updated: 2020/06/28 13:34:59 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static void	init(t_lemin *data)
 
 void		free_links(t_lemin *data)
 {
-	int i = 0;
-	t_link *link;
+	int		i = 0;
+	t_link	*link;
 
 	while (data->head_link)
 	{
@@ -45,8 +45,8 @@ void		free_links(t_lemin *data)
 
 void		free_rooms(t_lemin *data)
 {
-	int i = 0;
-	t_room *room;
+	int		i = 0;
+	t_room	*room;
 
 	while (data->head)
 	{
@@ -70,6 +70,7 @@ int			main(int ac, char **av)
 	delete_same_bfs(data);
 	set_directions(data);
 	count_inp_out(data);
+	inp_forks(data);
 	free_rooms(data);
 	printf("\n");
 	free_links(data);

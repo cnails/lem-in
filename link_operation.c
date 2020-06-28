@@ -6,13 +6,13 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/27 22:44:00 by cnails            #+#    #+#             */
-/*   Updated: 2020/05/27 23:22:51 by cnails           ###   ########.fr       */
+/*   Updated: 2020/06/28 13:36:07 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void	print_room(t_lemin *data)
+void		print_room(t_lemin *data)
 {
 	t_room *head;
 
