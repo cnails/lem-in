@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/27 22:44:00 by cnails            #+#    #+#             */
-/*   Updated: 2020/06/28 14:07:27 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/09 17:19:10 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void		set_directions(t_lemin *data)
 	}
 }
 
-void		count_inp_out(t_lemin *data)
+void		count_inp_out(t_lemin *data, size_t nbr)
 {
 	t_link *head;
 
@@ -64,8 +64,8 @@ void		count_inp_out(t_lemin *data)
 	{
 		if (!head->is_unusefull)
 		{
-			head->prev_room->output++;
-			head->next_room->input++;
+			head->prev_room->output += nbr;
+			head->next_room->input += nbr;
 			if (head->next_room->is_end)
 				data->var.is_true = true;
 		}
@@ -73,5 +73,5 @@ void		count_inp_out(t_lemin *data)
 	}
 	if (!data->var.is_true)
 		ft_error("no way");
-	// print_room(data);
+	// print_links(data);
 }

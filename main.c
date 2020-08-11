@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 11:55:09 by cnails            #+#    #+#             */
-/*   Updated: 2020/06/28 14:08:04 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/09 17:19:02 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void		free_rooms(t_lemin *data)
 int			main(int ac, char **av)
 {
 	t_lemin	*data;
+	size_t one = 1;
+	size_t zero = 0;
 
 	data = (t_lemin *)ft_memalloc(sizeof(t_lemin));
 	init(data);
@@ -69,10 +71,11 @@ int			main(int ac, char **av)
 	bfs(data);
 	delete_same_bfs(data);
 	set_directions(data);
-	count_inp_out(data);
-	inp_forks(data);
+	count_inp_out(data, one);
 	while (delete_dead_links(data))
-		count_inp_out(data);
+		count_inp_out(data, zero);
+	inp_forks(data);
+	print_links(data);
 	free_rooms(data);
 	printf("\n");
 	free_links(data);
