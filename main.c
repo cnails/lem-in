@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 11:55:09 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/09 17:19:02 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/16 21:35:05 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ static void	init(t_lemin *data)
 	data->head_link = NULL;
 	data->head = NULL;
 	data->links = NULL;
+	data->ants_in_road = 0;
+	data->qty_paths = 0;
+	data->ant_id = 1;
 }
 
 void		free_links(t_lemin *data)
@@ -76,6 +79,8 @@ int			main(int ac, char **av)
 		count_inp_out(data, zero);
 	inp_forks(data);
 	print_links(data);
+	count_paths(data);
+	alg(data);
 	free_rooms(data);
 	printf("\n");
 	free_links(data);

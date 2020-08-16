@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/19 12:54:06 by cnails            #+#    #+#             */
-/*   Updated: 2020/06/28 14:36:29 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/16 21:24:16 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	init_room(t_room *room)
 	room->output = 0;
 	room->x = 0;
 	room->y = 0;
+	room->ant_id = 0;
 }
 
 void	validate_room(t_lemin *data, t_room *room)
