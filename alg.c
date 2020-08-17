@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 17:22:36 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/17 09:22:48 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/17 10:18:39 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,23 +51,36 @@ void	print_step(t_lemin *data, t_room *room, int ant_id)
 	printf("L%d-%s ", ant_id, room->name);
 }
 
+int		count_sum(t_lemin *data, t_link *link)
+{
+	t_link	**head;
+	int		sum;
+	int		i;
+
+	sum = 0;
+	i = 0;
+	head = data->paths;
+	while (head[i] != link)
+	{
+		sum += head[i]->length - link->length;
+		i++;
+	}
+	return (sum);
+}
+
 void	move_ants_from_start(t_lemin *data)
 {
-	t_link *head;
+	t_link **paths;
 
-	head = data->head_link;
+	paths = data->paths;
 	data->var.x = 0;
 	while (data->var.x < data->qty_paths)
 	{
-		if (head->prev_room->is_start)
+		if (paths[data->var.x]->length < count_sum(data, paths[data->var.x])) // uslovie nado
 		{
-			if (head->length)
-			{
-
-			}
-			data->var.x++;
+			// step
 		}
-		head = head->next;
+		data->var.x++;
 	}
 }
 
