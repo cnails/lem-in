@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 11:55:04 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/16 22:38:49 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/17 21:30:04 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct	s_link
 {
 	bool			is_used;
 	bool			is_unusefull;
+	int				ant_id;
 	t_room			*prev_room;
 	t_room			*next_room;
 	struct s_link	*next;

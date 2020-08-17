@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 18:26:23 by cnails            #+#    #+#             */
-/*   Updated: 2020/06/28 13:33:37 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/17 22:22:16 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print_bfs(t_lemin *data)
 	head = data->head;
 	while (head)
 	{
-		printf("%s %d\n", head->name, head->bfs);
+		// printf("%s %d\n", head->name, head->bfs);
 		head = head->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/25 14:01:29 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/09 17:09:24 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/17 22:22:20 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	delete_unusefull(t_lemin *data, t_link *tmp)
 	t_link *head;
 	t_link *prev;
 
-	printf("del link %s(%d)(%d)-%s\n", tmp->prev_room->name, tmp->prev_room->input, tmp->prev_room->output, tmp->next_room->name);
+	// printf("del link %s(%d)(%d)-%s\n", tmp->prev_room->name, tmp->prev_room->input, tmp->prev_room->output, tmp->next_room->name);
 	prev = NULL;
 	head = data->head_link;
 	while (head && head != tmp)

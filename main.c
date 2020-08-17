@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 11:55:09 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/16 23:37:23 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/17 22:22:55 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void		free_links(t_lemin *data)
 		free(data->head_link);
 		data->head_link = link;
 	}
-	printf("%d links have been cleaned\n", i);
+	// printf("%d links have been cleaned\n", i);
 }
 
 void		free_rooms(t_lemin *data)
@@ -59,7 +59,7 @@ void		free_rooms(t_lemin *data)
 		free(data->head);
 		data->head = room;
 	}
-	printf("%d rooms have been cleaned\n", i);
+	// printf("%d rooms have been cleaned\n", i);
 }
 
 int			main(int ac, char **av)
@@ -80,9 +80,9 @@ int			main(int ac, char **av)
 	inp_forks(data);
 	print_links(data);
 	count_paths(data);
+	printf("\n");
 	alg(data);
 	free_rooms(data);
-	printf("\n");
 	free_links(data);
 	free(data->paths);
 	free(data);

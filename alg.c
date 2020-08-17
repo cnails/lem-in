@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 17:22:36 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/17 10:18:39 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/17 22:24:13 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,27 @@ t_link	*find_link(t_lemin *data, t_room *room)
 	return (NULL);
 }
 
+void	clear_rooms(t_lemin *data)
+{
+	// t_room *head;
+
+	// head = data->head;
+	// while (head)
+	// {
+	// 	head->is_used = false;
+	// 	head = head->next;
+	// }
+	t_link *head;
+
+	head = data->head_link;
+	while (head)
+	{
+		head->next_room->is_used = false;
+		head->prev_room->is_used = false;
+		head = head->next;
+	}
+}
+
 void	move_ants(t_lemin *data)
 {
 	t_link *head;
@@ -34,19 +55,35 @@ void	move_ants(t_lemin *data)
 	head = data->head_link;
 	while (head)
 	{
-		if (head->prev_room->ant_id)
+		if (head->prev_room->ant_id && !head->length && !head->prev_room->is_used)
 		{
-			print_step(data, head->next_room, head->prev_room->ant_id);
-			head->next_room = head->prev_room->ant_id;
+			print_step(data, head->next_room, head->prev_room->ant_id, 1);
+			if (head->next_room->ant_id)
+				head->ant_id = head->prev_room->ant_id;
+			else
+			{
+				head->next_room->ant_id = head->prev_room->ant_id;
+				head->next_room->is_used = true;
+			}
 			head->prev_room->ant_id = 0;
 			if (head->next_room->is_end)
 				data->ants_in_road--;
 		}
 		head = head->next;
-	}	
+	}
+	head = data->head_link;
+	while (head)
+	{
+		if (head->ant_id && !head->next_room->ant_id)
+		{
+			head->next_room->ant_id = head->ant_id;
+			head->ant_id = 0;
+		}
+		head = head->next;
+	}
 }
 
-void	print_step(t_lemin *data, t_room *room, int ant_id)
+void	print_step(t_lemin *data, t_room *room, int ant_id, bool debug)
 {
 	printf("L%d-%s ", ant_id, room->name);
 }
@@ -68,17 +105,26 @@ int		count_sum(t_lemin *data, t_link *link)
 	return (sum);
 }
 
+void	make_step(t_lemin *data, t_link *link)
+{
+	link->next_room->ant_id = data->ant_id;
+	data->ants_in_road++;
+	data->ant_id++;
+	data->qty_ants--;
+	print_step(data, link->next_room, link->next_room->ant_id, 0);
+}
+
 void	move_ants_from_start(t_lemin *data)
 {
 	t_link **paths;
 
 	paths = data->paths;
 	data->var.x = 0;
-	while (data->var.x < data->qty_paths)
+	while (data->var.x < data->qty_paths && data->qty_ants)
 	{
-		if (paths[data->var.x]->length < count_sum(data, paths[data->var.x])) // uslovie nado
+		if (data->qty_ants > count_sum(data, paths[data->var.x]))
 		{
-			// step
+			make_step(data, paths[data->var.x]);
 		}
 		data->var.x++;
 	}
@@ -117,7 +163,7 @@ void	calc_len_paths(t_lemin *data)
 		{
 			head->is_used = false;
 			head->length = calc_len(data, head);
-			printf("len = %d\n", head->length);
+			// printf("len = %d\n", head->length);
 			data->var.y++;
 		}
 		head = head->next;
@@ -162,7 +208,7 @@ void	form_paths(t_lemin *data)
 	i = 0;
 	while (i < data->qty_paths)
 	{
-	head = data->head_link;
+		head = data->head_link;
 		min = 999999;
 		while (head)
 		{
@@ -182,87 +228,16 @@ void	alg(t_lemin *data)
 {
 	calc_len_paths(data);
 	form_paths(data); // rabotaet))
-	// TODO: PROVER' DOROGI 
-	// while (data->qty_ants || data->ants_in_road)
-	// {
-	// 	if (data->ants_in_road)
-	// 		move_ants(data);
-	// 	move_ants_from_start(data);
-	// 	printf("\n");
-	// }
+	// TODO: PROVER' DOROGI
+	int i = 0;
+	// while (i++ < 6)
+	while (data->qty_ants || data->ants_in_road)
+	{
+		clear_rooms(data);
+		if (data->ants_in_road)
+			move_ants(data);
+		move_ants_from_start(data);
+		printf("\n");
+		// break;
+	}
 }
-
-// t_path	*form_path(t_lemin *data, t_link *head)
-// {
-// 	t_path	*path;
-// 	t_link	*head_link;
-// 	t_link	*tmp;
-// 	t_link	*link;
-// 	t_steps	*step;
-// 	t_steps	*head_step;
-
-// 	head_link = NULL;
-// 	path = (t_path *)ft_memalloc(sizeof(t_path));
-// 	step = (t_steps *)ft_memalloc(sizeof(t_steps));
-// 	// path->steps->link = 
-// 	head_step = step;
-// 	link = head;
-// 	head_link = link;
-// 	// path->steps->link = (t_link)ft_memalloc(sizeof(t_link));
-// 	path->steps->link = *head;
-// 	path->steps->next = ft_memalloc(sizeof(t_link));
-// 	path->steps = path->steps->next;
-// 	while (tmp = find_link(data, link->next_room))
-// 	{
-// 		printf("%s-%s\n", tmp->prev_room->name, tmp->next_room->name);
-// 		// link->next = (t_link *)ft_memalloc(sizeof(t_link));
-// 		path->steps->link = *tmp;
-// 		// path
-// 		link->next = tmp;
-// 		// link->next = (t_link *)ft_memalloc(sizeof(t_link));
-// 		// link = link->next;
-// 		link = link->next;
-// 		path->steps->next = (t_path *)ft_memalloc(sizeof(t_path));
-// 		path->steps = path->steps->next;
-// 		// link->next = NULL;
-// 	}
-// 	path->steps = head_step;
-// 	// path->links = head_link;
-// 	return (path);
-// }
-
-// void	print_path(t_path *head)
-// {
-// 	// t_path *head;
-
-// 	// head = data->paths;
-// 	// printf("1\n");
-// 	while (head->steps)
-// 	{
-// 		printf("%s-%s\n", head->steps->link.prev_room->name, head->steps->link.next_room->name);
-// 		if (head->steps->link.next_room->is_end)
-// 			break;
-// 		head->steps = head->steps->next;
-// 	}
-// }
-
-// void	form_paths(t_lemin *data)
-// {
-// 	t_link *head;
-// 	t_path *path;
-// 	t_path *head_path;
-
-// 	head = data->head_link;
-// 	head_path = NULL;
-// 	while (head)
-// 	{
-// 		printf("here\n");
-// 		if (head->prev_room->is_start)
-// 		{
-// 			path = form_path(data, head);
-// 			print_path(path);
-// 			// exit(1);
-// 		}
-// 		head = head->next;
-// 	}
-// }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   new_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/16 12:42:43 by cnails            #+#    #+#             */
-/*   Updated: 2020/06/28 13:35:49 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/17 22:25:26 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	parse_ants(t_lemin *data)
 {
 	while (get_next_line(0, &data->var.line))
 	{
+		printf("%s\n", data->var.line);
 		if (ft_isdigit(data->var.line[0]))
 		{
 			data->qty_ants = ft_atoi(data->var.line);
@@ -31,7 +32,7 @@ void	parse_ants(t_lemin *data)
 			ft_error("parse_ants");
 		free(data->var.line);
 	}
-	printf("qty ants = %d\n", data->qty_ants);
+	// printf("qty ants = %d\n", data->qty_ants);
 	ft_parse(data);
 }
 
@@ -44,6 +45,7 @@ void		ft_parse(t_lemin *data)
 	end = false;
 	while (get_next_line(0, &data->var.line))
 	{
+		printf("%s\n", data->var.line);
 		if (!ft_strcmp("##start", data->var.line))
 		{
 			parse_room(data, true, false);

@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/19 19:53:06 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/16 23:18:40 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/17 22:26:54 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int		parse_links(t_lemin *data)
 	free(data->var.line);
 	while (get_next_line(0, &data->var.line))
 	{
+		printf("%s\n", data->var.line);
 		if (!(data->var.line[0] == '#'))
 			split_link(data);
 		free(data->var.line);
