@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 11:55:09 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/16 21:35:05 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/16 23:37:23 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int			main(int ac, char **av)
 	free_rooms(data);
 	printf("\n");
 	free_links(data);
+	free(data->paths);
 	free(data);
 	return (0);
 }

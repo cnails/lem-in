@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 11:55:04 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/16 22:02:06 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/16 22:38:49 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct	s_lemin
 	int		ants_in_road;
 	int		qty_paths;
 	int		ant_id;
+	t_link	**paths;
 }				t_lemin;
 
 void			ft_parse(t_lemin *data);
