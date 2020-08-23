@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 11:55:09 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/17 22:22:55 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/17 23:01:17 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int			main(int ac, char **av)
 	t_lemin	*data;
 	size_t one = 1;
 	size_t zero = 0;
-
+	// TODO: validaciya - coords can be only INT
 	data = (t_lemin *)ft_memalloc(sizeof(t_lemin));
 	init(data);
 	parse_ants(data);

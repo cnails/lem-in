@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 12:44:00 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/17 22:22:24 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/23 21:59:59 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_link	*prev_link(t_lemin *data, t_room *room)
 int		has_output_forks(t_lemin *data, t_link *link)
 {
 	// printf("link = %s(%d)(%d)-%s\n", link->prev_room->name, link->prev_room->input, link->prev_room->output, link->next_room->name);
-	if (link->prev_room == data->head)
+	if (link->prev_room->is_start)
 		return (0);
 	if (link->prev_room->output > 1)
 		return (1);

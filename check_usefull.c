@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/25 14:01:29 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/17 22:22:20 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/23 22:30:07 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	delete_unusefull(t_lemin *data, t_link *tmp)
 	if (tmp->next_room->input > 0)
 		tmp->next_room->input--;
 	free(tmp);
+	tmp = NULL;
 }
 
 void	delete_same_bfs(t_lemin *data)
@@ -59,6 +60,24 @@ void	delete_same_bfs(t_lemin *data)
 	}
 }
 
+void	del_dead_link(t_lemin *data, t_room *room)
+{
+	t_link *head;
+
+	head = data->head_link;
+	while (head)
+	{
+		if (head->next_room == room)
+		{
+			if (head->prev_room->output == 1)
+				del_dead_link(data, head->prev_room);
+			delete_unusefull(data, head);
+			break;
+		}
+		head = head->next;
+	}
+}
+
 int		delete_dead_links(t_lemin *data)
 {
 	t_link	*head;
@@ -72,6 +91,8 @@ int		delete_dead_links(t_lemin *data)
 		next = head->next;
 		if (!head->next_room->output && !head->next_room->is_end)
 		{
+			if (head->prev_room->output == 1)
+				del_dead_link(data, head->prev_room);
 			delete_unusefull(data, head);
 			flag = 1;
 		}

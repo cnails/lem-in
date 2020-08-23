@@ -1,8 +1,8 @@
 #!/bin/sh
 
-if [ -f colors.sh ]; then
-	. colors.sh
-fi
+# if [ -f colors.sh ]; then
+# 	. colors.sh
+# fi
 
 LEM_IN_EXEC=$1
 
