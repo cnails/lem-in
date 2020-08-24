@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 17:22:36 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/17 22:24:13 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/24 12:09:46 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,8 @@ void	count_paths(t_lemin *data)
 
 int		calc_len(t_lemin *data, t_link *link)
 {
+	// if (link == NULL)
+	// 	return (0);
 	if (link->next_room->is_end)
 		return (1);
 	return (1 + calc_len(data, find_link(data, link->next_room)));
