@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 12:44:00 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/23 21:59:59 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/24 11:28:52 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		has_output_forks(t_lemin *data, t_link *link)
 	return (has_output_forks(data, prev_link(data, link->prev_room)));
 }
 
-void	delete_line(t_lemin *data, t_room *room)
+t_link	*delete_line(t_lemin *data, t_room *room, t_link *next)
 {
 	t_link *link;
 	t_room *prev_room;
@@ -64,10 +64,13 @@ void	delete_line(t_lemin *data, t_room *room)
 	while (room->output == 0)
 	{
 		link = prev_link(data, room);
+		if (link == next)
+			next = link->next; 
 		prev_room = link->prev_room;
 		delete_unusefull(data, link);
 		room = prev_room;
 	}
+	return (next);
 }
 
 void	inp_forks(t_lemin *data)
@@ -85,7 +88,7 @@ void	inp_forks(t_lemin *data)
 		{
 			if (has_output_forks(data, head))
 				delete_unusefull(data, head);
-			delete_line(data, room);
+			next = delete_line(data, room, next);
 		}
 		head = next;
 	}
