@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/16 12:42:43 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/17 22:25:26 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/26 17:51:42 by wkraig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	parse_ants(t_lemin *data)
 {
-	while (get_next_line(0, &data->var.line))
+	while (get_next_line(0, &data->var.line) > 0)
 	{
 		printf("%s\n", data->var.line);
 		if (ft_isdigit(data->var.line[0]))
@@ -43,7 +43,7 @@ void		ft_parse(t_lemin *data)
 
 	start = false;
 	end = false;
-	while (get_next_line(0, &data->var.line))
+	while (get_next_line(0, &data->var.line) > 0)
 	{
 		printf("%s\n", data->var.line);
 		if (!ft_strcmp("##start", data->var.line))
@@ -61,6 +61,8 @@ void		ft_parse(t_lemin *data)
 		else
 			parse_room(data, false, false);
 	}
+	if (!data->var.line)
+		exit(0);
 	if (!(start && end))
 		ft_error("missing start or end\n");
 	if (!data->head_link)
