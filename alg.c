@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 17:22:36 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/26 17:32:01 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/26 17:49:20 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,33 @@ void	move_ants(t_lemin *data)
 	{
 		if (head->prev_room->ant_id && !head->length && !head->prev_room->is_used)
 		{
-			print_step(data, head->next_room, head->prev_room->ant_id, 1);
-			if (head->next_room->ant_id)
-				head->ant_id = head->prev_room->ant_id;
-			else
+			if (!head->ant_id)
 			{
-				head->next_room->ant_id = head->prev_room->ant_id;
-				head->next_room->is_used = true;
+				if (head->next_room->ant_id)
+				{
+					head->ant_id = head->prev_room->ant_id;
+					print_step(data, head->next_room, head->prev_room->ant_id, 1);
+					head->prev_room->ant_id = 0;
+
+				if (head->next_room->is_end)
+					data->ants_in_road--;
+				}
 			}
-			head->prev_room->ant_id = 0;
-			if (head->next_room->is_end)
-				data->ants_in_road--;
+			if (!head->next_room->ant_id)
+			{
+				if (!head->next_room->is_end)
+				head->next_room->ant_id = head->prev_room->ant_id;
+					head->next_room->is_used = true;
+					print_step(data, head->next_room, head->prev_room->ant_id, 1);
+				// }
+				head->prev_room->ant_id = 0;
+				if (head->next_room->is_end)
+					data->ants_in_road--;
+			}
+				// else
+				// {
+					
+			// }
 		}
 		head = head->next;
 	}
@@ -81,6 +97,16 @@ void	move_ants(t_lemin *data)
 		}
 		head = head->next;
 	}
+	// head = data->head_link;
+	// while (head)
+	// {
+	// 	if (head->ant_id && !head->next_room->ant_id)
+	// 	{
+	// 		head->next_room->ant_id = head->ant_id;
+	// 		head->ant_id = 0;
+	// 	}
+	// 	head = head->next;
+	// }
 }
 
 void	print_step(t_lemin *data, t_room *room, int ant_id, bool debug)
