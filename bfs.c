@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 18:26:23 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/26 19:13:26 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/26 19:25:38 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	bfs(t_lemin *data)
 			head = head->next;
 		}
 		if (validate_bfs(data))
-			break;
+			break ;
 	}
 	if (!data->var.is_true)
 		ft_error("no way");

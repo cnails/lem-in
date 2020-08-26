@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 17:22:36 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/26 18:07:32 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/26 19:27:42 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	move_ants(t_lemin *data)
 					head->ant_id = head->prev_room->ant_id;
 					print_step(data, head->next_room, head->prev_room->ant_id, 1);
 					head->prev_room->ant_id = 0;
-
 				if (head->next_room->is_end)
 					data->ants_in_road--;
 				}

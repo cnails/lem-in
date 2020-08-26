@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/19 12:54:06 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/17 22:27:45 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/26 19:23:42 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,12 +105,10 @@ void	parse_room(t_lemin *data, bool start, bool end)
 		room->is_end = end;
 		if (room->is_end)
 			room->bfs = INT_MAX;
-			
 		free(data->var.line);
-		if (get_next_line(0, &data->var.line) == -1)
+		if (get_next_line(0, &data->var.line) == -1) // zachem eta proverka??
 			ft_error("parse_room");
 		printf("%s\n", data->var.line);
-
 	}
 	else
 		room->is_inter = true;
