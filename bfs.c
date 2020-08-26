@@ -6,23 +6,11 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 18:26:23 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/17 22:22:16 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/26 19:13:26 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
-
-void	print_bfs(t_lemin *data)
-{
-	t_room *head;
-
-	head = data->head;
-	while (head)
-	{
-		// printf("%s %d\n", head->name, head->bfs);
-		head = head->next;
-	}
-}
 
 int		validate_bfs(t_lemin *data)
 {
@@ -74,9 +62,8 @@ void	bfs(t_lemin *data)
 			head = head->next;
 		}
 		if (validate_bfs(data))
-			break ;
+			break;
 	}
 	if (!data->var.is_true)
 		ft_error("no way");
-	print_bfs(data);
 }

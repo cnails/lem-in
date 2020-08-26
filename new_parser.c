@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/16 12:42:43 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/26 17:51:42 by wkraig           ###   ########.fr       */
+/*   Updated: 2020/08/26 19:12:43 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	parse_ants(t_lemin *data)
 			ft_error("parse_ants");
 		free(data->var.line);
 	}
-	// printf("qty ants = %d\n", data->qty_ants);
 	ft_parse(data);
 }
 
@@ -62,9 +61,9 @@ void		ft_parse(t_lemin *data)
 			parse_room(data, false, false);
 	}
 	if (!data->var.line)
-		exit(0);
+		ft_error("USAGE: ./lem-in < map");
 	if (!(start && end))
-		ft_error("missing start or end\n");
+		ft_error("missing start or end");
 	if (!data->head_link)
 		ft_error("0 link\n");
 }
