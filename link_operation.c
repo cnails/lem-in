@@ -6,35 +6,11 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/27 22:44:00 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/17 22:22:33 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/26 18:47:38 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
-
-void		print_room(t_lemin *data)
-{
-	t_room *head;
-
-	head = data->head;
-	while (head)
-	{
-		// printf("%s input = %ld output = %ld\n", head->name, head->input, head->output);
-		head = head->next;
-	}
-}
-
-void		print_links(t_lemin *data)
-{
-	t_link *head;
-
-	head = data->head_link;
-	while (head)
-	{
-		// printf("%s->%s\n", head->prev_room->name, head->next_room->name);
-		head = head->next;
-	}
-}
 
 void		set_directions(t_lemin *data)
 {
@@ -73,5 +49,4 @@ void		count_inp_out(t_lemin *data, size_t nbr)
 	}
 	if (!data->var.is_true)
 		ft_error("no way");
-	// print_links(data);
 }

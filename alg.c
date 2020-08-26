@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 17:22:36 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/26 17:55:24 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/26 18:07:32 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_link	*find_link(t_lemin *data, t_room *room)
 	head = data->head_link;
 	while (head)
 	{
-		// printf("link = %s-%s\n", head->prev_room->name, head->next_room->name);
 		if (head->prev_room == room)
 			return (head);
 		head = head->next;
@@ -29,14 +28,6 @@ t_link	*find_link(t_lemin *data, t_room *room)
 
 void	clear_rooms(t_lemin *data)
 {
-	// t_room *head;
-
-	// head = data->head;
-	// while (head)
-	// {
-	// 	head->is_used = false;
-	// 	head = head->next;
-	// }
 	t_link *head;
 
 	head = data->head_link;
@@ -75,15 +66,10 @@ void	move_ants(t_lemin *data)
 				head->next_room->ant_id = head->prev_room->ant_id;
 					head->next_room->is_used = true;
 					print_step(data, head->next_room, head->prev_room->ant_id, 1);
-				// }
 				head->prev_room->ant_id = 0;
 				if (head->next_room->is_end)
 					data->ants_in_road--;
 			}
-				// else
-				// {
-					
-			// }
 		}
 		head = head->next;
 	}
@@ -97,16 +83,6 @@ void	move_ants(t_lemin *data)
 		}
 		head = head->next;
 	}
-	// head = data->head_link;
-	// while (head)
-	// {
-	// 	if (head->ant_id && !head->next_room->ant_id)
-	// 	{
-	// 		head->next_room->ant_id = head->ant_id;
-	// 		head->ant_id = 0;
-	// 	}
-	// 	head = head->next;
-	// }
 }
 
 void	print_step(t_lemin *data, t_room *room, int ant_id, bool debug)
@@ -191,8 +167,6 @@ void	calc_len_paths(t_lemin *data)
 		{
 			head->is_used = false;
 			head->length = calc_len(data, head);
-			// if (head->length = )
-			// printf("len = %d\n", head->length);
 			data->var.y++;
 		}
 		head = head->next;
@@ -209,7 +183,6 @@ void	add_path(t_lemin *data, t_link *link)
 	while (paths[i])
 		i++;
 	paths[i] = link;
-	// printf("paths[%d] = %s-%s\n", i, paths[i]->prev_room->name, paths[i]->next_room->name);
 }
 
 t_link	*find_link_by_len(t_lemin *data, int len)
@@ -256,10 +229,7 @@ void	form_paths(t_lemin *data)
 void	alg(t_lemin *data)
 {
 	calc_len_paths(data);
-	form_paths(data); // rabotaet))
-	// TODO: PROVER' DOROGI
-	int i = 0;
-	// while (i++ < 70)
+	form_paths(data);
 	while (data->qty_ants || data->ants_in_road)
 	{
 		clear_rooms(data);
@@ -267,6 +237,5 @@ void	alg(t_lemin *data)
 			move_ants(data);
 		move_ants_from_start(data);
 		printf("\n");
-		// break;
 	}
 }

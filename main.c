@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 11:55:09 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/26 16:18:49 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/26 19:04:13 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void		free_links(t_lemin *data)
 		free(data->head_link);
 		data->head_link = link;
 	}
-	// printf("%d links have been cleaned\n", i);
 }
 
 void		free_rooms(t_lemin *data)
@@ -60,7 +59,6 @@ void		free_rooms(t_lemin *data)
 		free(data->head);
 		data->head = room;
 	}
-	// printf("%d rooms have been cleaned\n", i);
 }
 
 int			main(int ac, char **av)
@@ -71,7 +69,7 @@ int			main(int ac, char **av)
 	// TODO: validaciya - coords can be only INT
 	// TODO: check if dir in argv
 	data = (t_lemin *)ft_memalloc(sizeof(t_lemin));
-	init(data);
+	init(data); // no need
 	parse_ants(data);
 	bfs(data);
 	delete_same_bfs(data);
@@ -80,7 +78,7 @@ int			main(int ac, char **av)
 	while (delete_dead_links(data))
 		count_inp_out(data, zero);
 	inp_forks(data);
-	print_links(data);
+	// print_links(data);
 	count_paths(data);
 	printf("\n");
 	alg(data);
