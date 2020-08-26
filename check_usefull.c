@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/25 14:01:29 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/24 11:39:53 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/26 16:22:11 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,25 +60,30 @@ void	delete_same_bfs(t_lemin *data)
 	}
 }
 
-t_link	*del_dead_link(t_lemin *data, t_room *room, t_link *next)
+void	del_dead_link(t_lemin *data, t_room *room, t_link *next, t_link *tmp)
 {
 	t_link *head;
 
 	head = data->head_link;
 	while (head)
 	{
-		if (head->next_room == room)
+		if (head->next_room == room && head != tmp)
 		{
-			if (head == next)
-				next = head->next;
+			if (data->next && data->next == head)
+				data->next = head->next;
+			else if (!data->next && head == next)
+			{
+				// printf("here\n");
+				data->next = head->next;
+			}
 			if (head->prev_room->output == 1)
-				next = del_dead_link(data, head->prev_room, next);
+				del_dead_link(data, head->prev_room, next, tmp);
 			delete_unusefull(data, head);
 			break;
 		}
 		head = head->next;
 	}
-	return (next);
+	// return (next);
 }
 
 int		delete_dead_links(t_lemin *data)
@@ -89,17 +94,29 @@ int		delete_dead_links(t_lemin *data)
 
 	flag = 0;
 	head = data->head_link;
+	next = NULL;
 	while (head)
 	{
+		data->next = NULL;
+		// if (head->next)
 		next = head->next;
+		// ft_error("HERE head == NULL");
 		if (!head->next_room->output && !head->next_room->is_end)
 		{
-			if (head->prev_room->output == 1)
-				next = del_dead_link(data, head->prev_room, next);
-			delete_unusefull(data, head);
+			// if (head->prev_room->output == 1)
+				// del_dead_link(data, head->prev_room, next, head);
+			// if (head == NULL)
+				// ft_error("HERE head == NULL");
+			// if (head)
+				delete_unusefull(data, head);
 			flag = 1;
 		}
-		head = next;
+		// if (next == NULL && !data->next)
+			// ft_error("HERE next == NULL");
+		if (!next || data->next)
+			head = data->next;
+		else
+			head = next;
 	}
 	return (flag);
 }

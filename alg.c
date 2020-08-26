@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 17:22:36 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/24 12:09:46 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/26 17:32:01 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void	move_ants_from_start(t_lemin *data)
 	data->var.x = 0;
 	while (data->var.x < data->qty_paths && data->qty_ants)
 	{
-		if (data->qty_ants > count_sum(data, paths[data->var.x]))
+		if (paths[data->var.x]->length > count_sum(data, paths[data->var.x]))
 		{
 			make_step(data, paths[data->var.x]);
 		}
@@ -146,8 +146,8 @@ void	count_paths(t_lemin *data)
 
 int		calc_len(t_lemin *data, t_link *link)
 {
-	// if (link == NULL)
-	// 	return (0);
+	if (link == NULL)
+		return (-9999999);
 	if (link->next_room->is_end)
 		return (1);
 	return (1 + calc_len(data, find_link(data, link->next_room)));
@@ -165,6 +165,7 @@ void	calc_len_paths(t_lemin *data)
 		{
 			head->is_used = false;
 			head->length = calc_len(data, head);
+			// if (head->length = )
 			// printf("len = %d\n", head->length);
 			data->var.y++;
 		}
@@ -192,7 +193,7 @@ t_link	*find_link_by_len(t_lemin *data, int len)
 	head = data->head_link;
 	while (head)
 	{
-		if (head->length == len)
+		if (head->length == len && !head->is_used)
 		{
 			head->is_used = true;
 			return (head);
@@ -232,14 +233,14 @@ void	alg(t_lemin *data)
 	form_paths(data); // rabotaet))
 	// TODO: PROVER' DOROGI
 	int i = 0;
-	// while (i++ < 6)
+	// while (i++ < 70)
 	while (data->qty_ants || data->ants_in_road)
 	{
 		clear_rooms(data);
 		if (data->ants_in_road)
 			move_ants(data);
 		move_ants_from_start(data);
-		printf("\n");
+		printf("%d\n", data->ants_in_road);
 		// break;
 	}
 }

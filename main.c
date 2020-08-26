@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 11:55:09 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/24 12:12:04 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/26 16:18:49 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	init(t_lemin *data)
 	data->ants_in_road = 0;
 	data->qty_paths = 0;
 	data->ant_id = 1;
+	data->next = NULL;
 }
 
 void		free_links(t_lemin *data)
@@ -68,6 +69,7 @@ int			main(int ac, char **av)
 	size_t one = 1;
 	size_t zero = 0;
 	// TODO: validaciya - coords can be only INT
+	// TODO: check if dir in argv
 	data = (t_lemin *)ft_memalloc(sizeof(t_lemin));
 	init(data);
 	parse_ants(data);
