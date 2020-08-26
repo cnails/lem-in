@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 11:55:04 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/17 21:30:04 by cnails           ###   ########.fr       */
+/*   Updated: 2020/08/26 19:25:00 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ typedef struct	s_room
 	size_t				input;
 	size_t				output;
 	bool				is_empty;
-	// struct s_link		**links;
 	struct s_room		*next;
 	struct s_room		*head;
 }				t_room;
@@ -53,23 +52,7 @@ typedef struct	s_link
 	t_room			*next_room;
 	struct s_link	*next;
 	int				length;
-	// struct s_link	*prev;
 }				t_link;
-
-// typedef struct	s_steps
-// {
-// 	t_link			link;
-// 	struct s_steps	*next;
-// }				t_steps;
-
-// typedef	struct	s_path
-// {
-// 	size_t			length;
-// 	// t_link			*links;
-// 	t_steps			*steps;
-// 	struct s_path	*next;
-// }				t_path;
-
 
 typedef struct	s_lemin
 {
@@ -78,7 +61,6 @@ typedef struct	s_lemin
 	t_room	*rooms;
 	t_room	*head;
 	t_link	*head_link;
-	// t_path	*paths;
 	t_vars	var;
 	int		qty_ants;
 	int		ants_in_road;
