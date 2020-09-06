@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 11:55:09 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/26 19:12:30 by cnails           ###   ########.fr       */
+/*   Updated: 2020/09/06 13:39:20 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,28 +18,12 @@ void		ft_error(char *str)
 	exit(1);
 }
 
-static void	init(t_lemin *data)
-{
-	data->rooms = NULL;
-	data->qty_ants = 0;
-	data->qty_links = 0;
-	data->head_link = NULL;
-	data->head = NULL;
-	data->links = NULL;
-	data->ants_in_road = 0;
-	data->qty_paths = 0;
-	data->ant_id = 1; // need
-	data->next = NULL;
-}
-
 void		free_links(t_lemin *data)
 {
-	int		i = 0;
 	t_link	*link;
 
 	while (data->head_link)
 	{
-		i++;
 		link = data->head_link->next;
 		free(data->head_link);
 		data->head_link = link;
@@ -48,12 +32,10 @@ void		free_links(t_lemin *data)
 
 void		free_rooms(t_lemin *data)
 {
-	int		i = 0;
 	t_room	*room;
 
 	while (data->head)
 	{
-		i++;
 		room = data->head->next;
 		free(data->head->name);
 		free(data->head);
@@ -64,18 +46,22 @@ void		free_rooms(t_lemin *data)
 int			main(int ac, char **av)
 {
 	t_lemin	*data;
-	size_t one = 1;
-	size_t zero = 0;
-	// TODO: validaciya - coords can be only INT
+
 	data = (t_lemin *)ft_memalloc(sizeof(t_lemin));
-	init(data); // no need
+	init(data);
+	if (ac >= 2)
+	{
+		if (!ft_strcmp(av[1], "-p"))
+			data->print_paths = true;
+	}
+	// TODO: validaciya - coords can be only INT
 	parse_ants(data);
 	bfs(data);
 	delete_same_bfs(data);
 	set_directions(data);
-	count_inp_out(data, one);
+	count_inp_out(data, 1);
 	while (delete_dead_links(data))
-		count_inp_out(data, zero);
+		count_inp_out(data, 0);
 	inp_forks(data);
 	count_paths(data);
 	printf("\n");

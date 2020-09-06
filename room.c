@@ -6,44 +6,11 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/19 12:54:06 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/26 19:23:42 by cnails           ###   ########.fr       */
+/*   Updated: 2020/09/06 13:25:51 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
-
-void	init_room(t_room *room)
-{
-	room->bfs = 0;
-	room->is_empty = true;
-	room->head = NULL;
-	room->input = 0;
-	room->is_used = false;
-	room->is_inter = false;
-	room->is_start = false;
-	room->is_end = false;
-	room->name = NULL;
-	room->next = NULL;
-	room->output = 0;
-	room->x = 0;
-	room->y = 0;
-	room->ant_id = 0;
-}
-
-void	validate_room(t_lemin *data, t_room *room)
-{
-	t_room *head;
-
-	head = data->head;
-	while (head)
-	{
-		if ((head->x == room->x && head->y == room->y) ||\
-			((ft_strlen(head->name) == ft_strlen(room->name))\
-				&& !ft_strcmp(head->name, room->name)))
-			ft_error("room validate\n");
-		head = head->next;
-	}
-}
 
 void	parse_room_data(t_lemin *data, t_room *room, char **line)
 {
@@ -93,6 +60,12 @@ void	append_room(t_lemin *data, t_room *room)
 	}
 }
 
+void	parse_room_dop(t_lemin *data, t_room *room)
+{
+	free(data->var.line);
+	append_room(data, room);
+}
+
 void	parse_room(t_lemin *data, bool start, bool end)
 {
 	t_room *room;
@@ -106,17 +79,14 @@ void	parse_room(t_lemin *data, bool start, bool end)
 		if (room->is_end)
 			room->bfs = INT_MAX;
 		free(data->var.line);
-		if (get_next_line(0, &data->var.line) == -1) // zachem eta proverka??
+		if (get_next_line(0, &data->var.line) == -1)
 			ft_error("parse_room");
 		printf("%s\n", data->var.line);
 	}
 	else
 		room->is_inter = true;
 	if (!parse_coords_room(data, room, data->var.line))
-	{
-		free(data->var.line);
-		append_room(data, room);
-	}
+		parse_room_dop(data, room);
 	else
 	{
 		free(room);

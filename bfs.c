@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 18:26:23 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/26 19:25:38 by cnails           ###   ########.fr       */
+/*   Updated: 2020/09/06 13:15:38 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	bfs(t_lemin *data)
 
 	data->var.is_true = false;
 	data->var.x = 0;
-	while (data->var.x < (data->qty_links + 1))
+	while ((int)data->var.x < (data->qty_links + 1))
 	{
 		data->var.x++;
 		head = data->head_link;
