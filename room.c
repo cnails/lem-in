@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/19 12:54:06 by cnails            #+#    #+#             */
-/*   Updated: 2020/09/06 13:25:51 by cnails           ###   ########.fr       */
+/*   Updated: 2020/09/17 16:03:37 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	parse_room_data(t_lemin *data, t_room *room, char **line)
 	if (!ft_isnbr(line[1]))
 		ft_error("coord error\n");
 	room->x = ft_atoi(line[1]);
+	printf("line = %s\n", line[2]);
 	if (!ft_isnbr(line[2]))
 		ft_error("coord error\n");
 	room->y = ft_atoi(line[2]);
