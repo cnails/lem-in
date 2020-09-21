@@ -16,10 +16,10 @@ void		ft_error(t_lemin *data, char *str)
 {
 	if (data->print_errors)
 	{
-		printf("Error: %s\n", str);
+		printf("ERROR: %s\n", str);
 	}
 	else
-		printf("Error\n");
+		printf("ERROR\n");
 	exit(1);
 }
 
@@ -50,8 +50,10 @@ void		free_rooms(t_lemin *data)
 
 void		print_help(void)
 {
-	printf("[0;32mHELP[0m\n");
-	exit(1);
+	printf("\n\033[0;32m\t\t\tHELP\033[0m\n\n");
+	printf("\033[0;35m-e\033[0m\tDetailed error description\n");
+	printf("\033[0;35m-p\033[0m\tRemaining paths\n");
+	printf("\033[0;35m-c\033[0m\tCount of paths\n");
 }
 
 /*
@@ -77,7 +79,7 @@ void		parse_flags(t_lemin *data, char *str)
 {
 	int i;
 
-	i = 0;
+	i = 1;
 	while (str[i])
 	{
 		if (str[i] == 'e')
@@ -87,9 +89,35 @@ void		parse_flags(t_lemin *data, char *str)
 		else if (str[i] == 'c')
 			data->print_count = true;
 		else if (str[i] == 'h')
-			print_help();
+			data->print_help = true;
+		else
+			data->print_unknown = str[i];
 		i++;
 	}
+}
+
+void flags(t_lemin *data)
+{
+	if (data->print_count)
+		printf("\n\033[0;33mCount of paths: \033[0;32m%zu\033[0m\n", data->var.i);
+	if (data->print_paths)
+		print_paths(data);
+	if (data->print_unknown)
+	{
+		printf("\n\033[0;31m!UNKNOWN command \"%c\"\033[0m\nPlease read HELP\n",
+				data->print_unknown);
+		print_help();
+	}
+	else if (data->print_help)
+		print_help();
+}
+
+void free_all(t_lemin *data)
+{
+	free_rooms(data);
+	free_links(data);
+	free(data->paths);
+	free(data);
 }
 
 int			main(int ac, char **av)
@@ -115,9 +143,7 @@ int			main(int ac, char **av)
 	count_paths(data);
 	printf("\n");
 	alg(data);
-	free_rooms(data);
-	free_links(data);
-	free(data->paths);
-	free(data);
+	flags(data);
+	free_all(data);
 	return (0);
 }

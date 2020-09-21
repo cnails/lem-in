@@ -69,6 +69,8 @@ typedef struct	s_lemin
 	bool	print_paths;
 	bool	print_errors;
 	bool	print_count;
+	bool	print_help;
+	char	print_unknown;
 	t_link	**paths;
 }				t_lemin;
 
@@ -108,6 +110,8 @@ void			init(t_lemin *data);
 void			init_room(t_room *room);
 void			validate_room(t_lemin *data, t_room *room);
 void			print_paths(t_lemin *data);
+void			free_all(t_lemin *data);
+void			flags(t_lemin *data);
 
 /*
 **	utils

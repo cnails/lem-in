@@ -44,8 +44,6 @@ void	form_paths(t_lemin *data)
 		add_path(data, find_link_by_len(data, min));
 		i++;
 	}
-	if (data->print_paths)
-		print_paths(data);
 }
 
 void	add_path(t_lemin *data, t_link *link)

@@ -22,21 +22,21 @@ void	print_paths(t_lemin *data)
 	paths = data->paths;
 	while (i < data->qty_paths)
 	{
+		printf("\n");
 		head = paths[i];
 		if (head->length)
 			while (head)
 			{
 				printf("\033[1;36m%s", head->prev_room->name);
 				if (head->next_room->is_end)
-					printf("->%s", head->next_room->name);
+					printf("\033[0;35m->\033[1;36m%s", head->next_room->name);
 				head = find_link(data, head->next_room);
 				if (head)
 				{
-					printf("->");
+					printf("\033[0;35m->");
 				}
 			}
 		i++;
-		printf("\n");
 	}
 	printf("\033[0m\n");
 }
@@ -51,7 +51,7 @@ void	validate_room(t_lemin *data, t_room *room)
 		if ((head->x == room->x && head->y == room->y) ||\
 			((ft_strlen(head->name) == ft_strlen(room->name))\
 				&& !ft_strcmp(head->name, room->name)))
-			ft_error(data, "room validate");
+			ft_error(data, "coordinates of the rooms are the same");
 		head = head->next;
 	}
 }

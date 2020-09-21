@@ -12,14 +12,27 @@
 
 #include "lemin.h"
 
+bool		is_valid_int(int nbr, char *str)
+{
+	char *tmp;
+
+	tmp = ft_itoa(nbr);
+	if (ft_strcmp(tmp, str))
+	{
+		free(tmp);
+		return (false);
+	}
+	return (true);
+}
+
 void	parse_room_data(t_lemin *data, t_room *room, char **line)
 {
 	room->name = ft_strdup(line[0]);
-	if (!ft_isnbr(line[1]))
-		ft_error(data, "coord error");
+	if (!is_valid_int(ft_atoi(line[1]), line[1]))
+		ft_error(data, "first coordinate of room is not valid");
 	room->x = ft_atoi(line[1]);
-	if (!ft_isnbr(line[2]))
-		ft_error(data, "coord error");
+	if (!is_valid_int(ft_atoi(line[2]), line[2]))
+		ft_error(data, "second coordinate of room is not valid");
 	room->y = ft_atoi(line[2]);
 	validate_room(data, room);
 }
@@ -31,7 +44,7 @@ bool	parse_coords_room(t_lemin *data, t_room *room, char *line)
 	data->var.i = 0;
 	split = ft_strsplit(line, ' ');
 	if (line[0] == 'L')
-		ft_error(data, "error room");
+		ft_error(data, "invalid room name");
 	while (split[data->var.i])
 		data->var.i++;
 	if (data->var.i == 1)
@@ -40,7 +53,7 @@ bool	parse_coords_room(t_lemin *data, t_room *room, char *line)
 		return (true);
 	}
 	if (data->var.i != 3)
-		ft_error(data, "room error");
+		ft_error(data, "invalid third argument");
 	parse_room_data(data, room, split);
 	free_split(split);
 	return (false);
@@ -80,7 +93,7 @@ void	parse_room(t_lemin *data, bool start, bool end)
 			room->bfs = INT_MAX;
 		free(data->var.line);
 		if (get_next_line(0, &data->var.line) == -1)
-			ft_error(data, "parse_room");
+			ft_error(data, "invalid data");
 		printf("%s\n", data->var.line);
 	}
 	else
