@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/19 19:53:06 by cnails            #+#    #+#             */
-/*   Updated: 2020/09/06 13:17:57 by cnails           ###   ########.fr       */
+/*   Updated: 2020/09/21 12:32:55 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	similar_links(t_lemin *data, t_link *link)
 					ft_strsim(link->prev_room->name, head->prev_room->name))\
 					|| (ft_strsim(link->prev_room->name, head->next_room->name)\
 					&& ft_strsim(link->next_room->name, head->prev_room->name)))
-				ft_error("similar links\n");
+				ft_error(data, "similar links");
 		head = head->next;
 	}
 }
@@ -55,7 +55,7 @@ void	links_connection(t_lemin *data, char **line)
 	link->next = NULL;
 	data->qty_links++;
 	if (ft_strsim(link->prev_room->name, link->next_room->name))
-		ft_error("link error\n");
+		ft_error(data, "link error");
 	if (!data->links)
 	{
 		data->links = link;
@@ -77,7 +77,7 @@ void	split_link(t_lemin *data)
 	while (split[data->var.i])
 		data->var.i++;
 	if (data->var.i != 2)
-		ft_error("parse links\n");
+		ft_error(data, "parse links");
 	links_connection(data, split);
 	free_split(split);
 }

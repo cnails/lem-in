@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 11:55:04 by cnails            #+#    #+#             */
-/*   Updated: 2020/09/06 13:38:46 by cnails           ###   ########.fr       */
+/*   Updated: 2020/09/21 12:57:44 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ typedef struct	s_lemin
 	int		qty_paths;
 	int		ant_id;
 	bool	print_paths;
+	bool	print_errors;
+	bool	print_count;
 	t_link	**paths;
 }				t_lemin;
 
@@ -113,7 +115,7 @@ void			print_paths(t_lemin *data);
 
 int				ft_sstrlen(char **line);
 int				ft_strsim(char *str1, char *str2);
-void			ft_error(char *str);
+void			ft_error(t_lemin *data, char *str);
 void			free_split(char **split);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 13:17:09 by cnails            #+#    #+#             */
-/*   Updated: 2020/09/06 13:18:02 by cnails           ###   ########.fr       */
+/*   Updated: 2020/09/21 12:32:55 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,6 @@ t_room	*find_room(t_lemin *data, char *name)
 			return (head);
 		head = head->next;
 	}
-	ft_error("links error");
+	ft_error(data, "links error");
 	return (NULL);
 }

@@ -6,15 +6,20 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 11:55:09 by cnails            #+#    #+#             */
-/*   Updated: 2020/09/06 13:39:20 by cnails           ###   ########.fr       */
+/*   Updated: 2020/09/21 12:58:37 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void		ft_error(char *str)
+void		ft_error(t_lemin *data, char *str)
 {
-	printf("%s\n", str);
+	if (data->print_errors)
+	{
+		printf("Error: %s\n", str);
+	}
+	else
+		printf("Error\n");
 	exit(1);
 }
 
@@ -43,6 +48,33 @@ void		free_rooms(t_lemin *data)
 	}
 }
 
+void		parse_flags(t_lemin *data, char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == 'e')
+		{
+			data->print_errors = true;
+		}
+		else if (str[i] == 'p')
+		{
+			data->print_paths = true;
+		}
+		else if (str[i] == 'c')
+		{
+			data->print_count = true;
+		}
+		else if (str[i] == 'c')
+		{
+			data->print_count = true;
+		}
+		i++;
+	}
+}
+
 int			main(int ac, char **av)
 {
 	t_lemin	*data;
@@ -51,8 +83,8 @@ int			main(int ac, char **av)
 	init(data);
 	if (ac >= 2)
 	{
-		if (!ft_strcmp(av[1], "-p"))
-			data->print_paths = true;
+		if (av[1][0] == '-')
+			parse_flags(data, av[1]);
 	}
 	// TODO: validaciya - coords can be only INT
 	parse_ants(data);

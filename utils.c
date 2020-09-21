@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 16:43:51 by cnails            #+#    #+#             */
-/*   Updated: 2020/09/06 13:48:08 by cnails           ###   ########.fr       */
+/*   Updated: 2020/09/21 13:11:39 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	print_paths(t_lemin *data)
 		if (head->length)
 			while (head)
 			{
-				printf("%s", head->prev_room->name);
+				printf("\033[1;36m%s", head->prev_room->name);
 				if (head->next_room->is_end)
 					printf("->%s", head->next_room->name);
 				head = find_link(data, head->next_room);
@@ -38,7 +38,7 @@ void	print_paths(t_lemin *data)
 		i++;
 		printf("\n");
 	}
-	printf("\n");
+	printf("\033[0m\n");
 }
 
 void	validate_room(t_lemin *data, t_room *room)
@@ -51,7 +51,7 @@ void	validate_room(t_lemin *data, t_room *room)
 		if ((head->x == room->x && head->y == room->y) ||\
 			((ft_strlen(head->name) == ft_strlen(room->name))\
 				&& !ft_strcmp(head->name, room->name)))
-			ft_error("room validate\n");
+			ft_error(data, "room validate");
 		head = head->next;
 	}
 }

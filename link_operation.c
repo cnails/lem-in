@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/27 22:44:00 by cnails            #+#    #+#             */
-/*   Updated: 2020/08/26 18:47:38 by cnails           ###   ########.fr       */
+/*   Updated: 2020/09/21 12:32:55 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,5 @@ void		count_inp_out(t_lemin *data, size_t nbr)
 		head = head->next;
 	}
 	if (!data->var.is_true)
-		ft_error("no way");
+		ft_error(data, "no way");
 }

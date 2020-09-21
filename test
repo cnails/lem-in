@@ -2,7 +2,7 @@
 ##start
 room_0 0 0
 ##end
-room_9 99999121212 9999999
+room_9 999121212 9999999
 room_1 1 1
 room_2 2 2
 room_3 3 3
@@ -16,7 +16,7 @@ room_10 10 10
 room_11 12 10
 # need to fix bug //fixed
 # need to fix bug //fixed
-room_2-room_0
+room_0-room_2
 room_1-room_4
 room_4-room_2
 room_2-room_5
