@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 11:55:09 by cnails            #+#    #+#             */
-/*   Updated: 2020/09/21 12:58:37 by cnails           ###   ########.fr       */
+/*   Updated: 2020/09/21 13:13:59 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,15 @@ void		parse_flags(t_lemin *data, char *str)
 	while (str[i])
 	{
 		if (str[i] == 'e')
-		{
 			data->print_errors = true;
-		}
 		else if (str[i] == 'p')
-		{
 			data->print_paths = true;
-		}
 		else if (str[i] == 'c')
-		{
 			data->print_count = true;
-		}
 		else if (str[i] == 'c')
-		{
 			data->print_count = true;
-		}
+		else if (str[i] == 'h')
+			data->print_count = true;
 		i++;
 	}
 }
