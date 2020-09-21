@@ -67,5 +67,6 @@ void	print_help(void)
 	printf("\033[0;35m-e\033[0m\tDetailed error description\n");
 	printf("\033[0;35m-p\033[0m\tRemaining paths\n");
 	printf("\033[0;35m-c\033[0m\tCount of paths\n");
+	printf("\033[0;35m-a\033[0m\tCount of ants running along the paths\n");
 	exit(1);
 }
