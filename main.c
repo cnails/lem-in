@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 11:55:09 by cnails            #+#    #+#             */
-/*   Updated: 2020/09/21 13:13:59 by cnails           ###   ########.fr       */
+/*   Updated: 2020/09/21 13:17:09 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,31 @@ void		free_rooms(t_lemin *data)
 	}
 }
 
+void		print_help(void)
+{
+	printf("[0;32mHELP[0m\n");
+	exit(1);
+}
+
+/*
+
+CODE	COLOR
+[0;31m	Red
+[1;31m	Bold Red
+[0;32m	Green
+[1;32m	Bold Green
+[0;33m	Yellow
+[01;33m	Bold Yellow
+[0;34m	Blue
+[1;34m	Bold Blue
+[0;35m	Magenta
+[1;35m	Bold Magenta
+[0;36m	Cyan
+[1;36m	Bold Cyan
+[0m	Reset
+
+*/
+
 void		parse_flags(t_lemin *data, char *str)
 {
 	int i;
@@ -61,10 +86,8 @@ void		parse_flags(t_lemin *data, char *str)
 			data->print_paths = true;
 		else if (str[i] == 'c')
 			data->print_count = true;
-		else if (str[i] == 'c')
-			data->print_count = true;
 		else if (str[i] == 'h')
-			data->print_count = true;
+			print_help();
 		i++;
 	}
 }
