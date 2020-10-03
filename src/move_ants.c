@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 13:03:01 by cnails            #+#    #+#             */
-/*   Updated: 2020/09/06 13:29:42 by cnails           ###   ########.fr       */
+/*   Updated: 2020/09/23 14:42:36 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ void	move_ants_dop_func(t_lemin *data)
 		{
 			head->next_room->ant_id = head->ant_id;
 			head->ant_id = 0;
+			head->next_room->is_used = true;
+			print_step(head->next_room,\
+				head->prev_room->ant_id);
+			head->prev_room->ant_id = 0;
+			head->next_room->wait = false;
 		}
 		head = head->next;
 	}
@@ -67,17 +72,15 @@ void	move_ants(t_lemin *data)
 		if (head->prev_room->ant_id && !head->length &&\
 		!head->prev_room->is_used)
 		{
-			if (!head->ant_id)
+			if (!head->ant_id && !head->next_room->wait)
 				if (head->next_room->ant_id)
 				{
+					head->next_room->wait = true;
 					head->ant_id = head->prev_room->ant_id;
-					print_step(head->next_room,\
-					head->prev_room->ant_id);
-					head->prev_room->ant_id = 0;
 					if (head->next_room->is_end)
 						data->ants_in_road--;
 				}
-			if (!head->next_room->ant_id)
+			if (!head->next_room->ant_id && !head->ant_id)
 				check_move_ants(data, head);
 		}
 		head = head->next;
@@ -94,7 +97,8 @@ void	move_ants_from_start(t_lemin *data)
 	while ((int)data->var.x < data->qty_paths && data->qty_ants)
 	{
 		if (data->qty_ants > count_sum(data, paths[data->var.x]) &&\
-		paths[data->var.x]->length >= 0)
+		paths[data->var.x]->length >= 0 &&\
+		!paths[data->var.x]->next_room->ant_id)
 		{
 			paths[data->var.x]->count_ants++;
 			make_step(data, paths[data->var.x]);

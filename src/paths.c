@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 13:19:19 by cnails            #+#    #+#             */
-/*   Updated: 2020/09/06 13:33:32 by cnails           ###   ########.fr       */
+/*   Updated: 2020/09/29 16:13:43 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 void	make_step(t_lemin *data, t_link *link)
 {
-	link->next_room->ant_id = data->ant_id;
-	data->ants_in_road++;
+	if (!link->next_room->is_end)
+	{
+		link->next_room->ant_id = data->ant_id;
+		data->ants_in_road++;
+	}
 	data->ant_id++;
 	data->qty_ants--;
 	print_step(link->next_room, link->next_room->ant_id);

@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/16 12:42:43 by cnails            #+#    #+#             */
-/*   Updated: 2020/09/21 13:11:03 by cnails           ###   ########.fr       */
+/*   Updated: 2020/09/23 12:39:37 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	parse_ants(t_lemin *data)
 {
 	while (get_next_line(0, &data->var.line) > 0)
 	{
-		printf("%s\n", data->var.line);
+		ft_printf("%s\n", data->var.line);
 		if (ft_isdigit(data->var.line[0]))
 		{
 			data->qty_ants = ft_atoi(data->var.line);
@@ -54,7 +54,7 @@ void	ft_parse(t_lemin *data)
 	end = false;
 	while (get_next_line(0, &data->var.line) > 0)
 	{
-		printf("%s\n", data->var.line);
+		ft_printf("%s\n", data->var.line);
 		if (!ft_strcmp("##start", data->var.line))
 		{
 			parse_room(data, true, false);

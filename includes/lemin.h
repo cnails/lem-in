@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 11:55:04 by cnails            #+#    #+#             */
-/*   Updated: 2020/09/21 12:57:44 by cnails           ###   ########.fr       */
+/*   Updated: 2020/09/29 16:11:51 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct	s_room
 	size_t				input;
 	size_t				output;
 	bool				is_empty;
+	bool				wait;
 	struct s_room		*next;
 	struct s_room		*head;
 }				t_room;
@@ -88,7 +89,6 @@ void			inp_forks(t_lemin *data);
 int				delete_dead_links(t_lemin *data);
 void			print_links(t_lemin *data);
 void			delete_unusefull(t_lemin *data, t_link *tmp);
-void			count_paths(t_lemin *data);
 void			alg(t_lemin *data);
 void			move_ants_from_start(t_lemin *data);
 void			move_ants(t_lemin *data);
@@ -96,7 +96,6 @@ void			check_move_ants(t_lemin *data, t_link *head);
 void			move_ants_dop_func(t_lemin *data);
 void			print_step(t_room *room, int ant_id);
 void			clear_rooms(t_lemin *data);
-void			make_step(t_lemin *data, t_link *link);
 t_room			*find_room(t_lemin *data, char *name);
 t_link			*find_link_by_len(t_lemin *data, int len);
 t_link			*find_link(t_lemin *data, t_room *room);
@@ -106,8 +105,6 @@ void			add_path(t_lemin *data, t_link *link);
 void			form_paths(t_lemin *data);
 void			make_step(t_lemin *data, t_link *link);
 int				calc_len(t_lemin *data, t_link *link);
-void			clear_rooms(t_lemin *data);
-void			print_step(t_room *room, int ant_id);
 void			init(t_lemin *data);
 void			init_room(t_room *room);
 void			validate_room(t_lemin *data, t_room *room);

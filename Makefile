@@ -35,7 +35,7 @@ GCC_LIBFT 		= -L ./libft -lft
 all: $(NAME)
 
 $(NAME): $(OBJ_DIR) $(OBJ) $(NAME_LIB) $(HEADER)
-	$(CC) $(GCC_LIBFT) $(addprefix -I, $(INC_DIR)) $(OBJ) $(FLAGS) -o $(NAME)
+	$(CC) $(GCC_LIBFT) $(addprefix -I, $(INC_DIR)) $(OBJ) $(FLAGS) -o $(NAME) libft/libftprintf.a
 
 $(OBJ_DIR):
 	mkdir -p obj

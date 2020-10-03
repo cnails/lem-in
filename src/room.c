@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/19 12:54:06 by cnails            #+#    #+#             */
-/*   Updated: 2020/09/21 12:32:55 by cnails           ###   ########.fr       */
+/*   Updated: 2020/09/23 12:39:37 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	parse_room(t_lemin *data, bool start, bool end)
 		free(data->var.line);
 		if (get_next_line(0, &data->var.line) == -1)
 			ft_error(data, "invalid data");
-		printf("%s\n", data->var.line);
+		ft_printf("%s\n", data->var.line);
 	}
 	else
 		room->is_inter = true;

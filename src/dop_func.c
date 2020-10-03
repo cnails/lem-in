@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dop_func.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmetallo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 17:07:26 by dmetallo          #+#    #+#             */
-/*   Updated: 2020/09/21 17:07:29 by dmetallo         ###   ########.fr       */
+/*   Updated: 2020/09/23 13:21:23 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ bool	is_valid_int(int nbr, char *str)
 		free(tmp);
 		return (false);
 	}
+	free(tmp);
 	return (true);
 }
 
@@ -29,10 +30,10 @@ void	ft_error(t_lemin *data, char *str)
 {
 	if (data->print_errors)
 	{
-		printf("ERROR: %s\n", str);
+		ft_printf("ERROR: %s\n", str);
 	}
 	else
-		printf("ERROR\n");
+		ft_printf("ERROR\n");
 	exit(1);
 }
 
@@ -63,10 +64,10 @@ void	free_rooms(t_lemin *data)
 
 void	print_help(void)
 {
-	printf("\n\033[0;32m\t\t\tHELP\033[0m\n\n");
-	printf("\033[0;35m-e\033[0m\tDetailed error description\n");
-	printf("\033[0;35m-p\033[0m\tRemaining paths\n");
-	printf("\033[0;35m-c\033[0m\tCount of paths\n");
-	printf("\033[0;35m-a\033[0m\tCount of ants running along the paths\n");
+	ft_printf("\n\033[0;32m\t\t\tHELP\033[0m\n\n");
+	ft_printf("\033[0;35m-e\033[0m\tDetailed error description\n");
+	ft_printf("\033[0;35m-p\033[0m\tRemaining paths\n");
+	ft_printf("\033[0;35m-c\033[0m\tCount of paths\n");
+	ft_printf("\033[0;35m-a\033[0m\tCount of ants running along the paths\n");
 	exit(1);
 }

@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 17:22:36 by cnails            #+#    #+#             */
-/*   Updated: 2020/09/06 13:20:13 by cnails           ###   ########.fr       */
+/*   Updated: 2020/09/29 16:14:04 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_step(t_room *room, int ant_id)
 {
-	printf("L%d-%s ", ant_id, room->name);
+	ft_printf("L%d-%s ", ant_id, room->name);
 }
 
 void	clear_rooms(t_lemin *data)
@@ -49,6 +49,6 @@ void	alg(t_lemin *data)
 		if (data->ants_in_road)
 			move_ants(data);
 		move_ants_from_start(data);
-		printf("\n");
+		ft_printf("\n");
 	}
 }
