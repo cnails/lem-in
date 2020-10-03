@@ -6,7 +6,7 @@
 /*   By: cnails <cnails@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 13:19:19 by cnails            #+#    #+#             */
-/*   Updated: 2020/09/29 16:13:43 by cnails           ###   ########.fr       */
+/*   Updated: 2020/10/03 13:01:13 by cnails           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ void	make_step(t_lemin *data, t_link *link)
 	}
 	data->ant_id++;
 	data->qty_ants--;
-	print_step(link->next_room, link->next_room->ant_id);
+	if (!link->next_room->is_end)
+		print_step(link->next_room, link->next_room->ant_id);
+	else
+		print_step(link->next_room, data->ant_id - 1);
 }
 
 void	form_paths(t_lemin *data)
